@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
+
+                // font-family: 'Secular One', sans-serif;
+.navbar {
+    z-index: 999;
+    height: 50px;
+    padding: 0 50px !important;
+    -webkit-box-shadow: 0 8px 6px -6px #ccc !important;
+    -moz-box-shadow: 0 8px 6px -6px #ccc !important;
+    box-shadow: 0 8px 6px -6px #ccc !important;
+    flex-wrap: inherit !important;
+
+    .navbar-collapse {
+        height: 48px;
+        .header__links__container {
+            transform: translateY(2px);
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        .header__links__container:hover {
+            -webkit-box-shadow:inset 0px -3px green;
+            -moz-box-shadow:inset 0px -3px green;
+            box-shadow:inset 0px -3px green;
+        }
+        .navbar-nav {
+            height: 100%;
+        }
+    }
+
+    .navbar-toggler {
+        position: absolute;
+        right: 20px;
+        top: 10px;
+    }
+    
+    .navbar-brand {
+        height: 50px;
+        padding: 0px !important;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        .header__logo {
+            color: red;
+            transform: scale(1.5);
+        }
+        .header__logo___text {
+            color: blue;
+            font-weight: 800;
+            font-size: 25px;
+            transform: translateY(2px);
+            margin-left: 5px;
+            .red {
+                color: red;
+            }
+        }
+    }
+}
+@media (max-width:768px) {
+    .navbar {
+        padding: 0px !important;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
+    .navbar-collapse {
+        height: 48px;
+        width: 90% !important;
+        padding: 10px 0px !important;
+        .header__links__container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 10px !important;
+            height: 100%;
+            border-top: 0.1px solid rgb(211, 211, 211);
+        }
+        .header__links__container:hover {
+            box-shadow:none !important;
+        }
+        .navbar-nav {
+            height: 100%;
+        }
+        .nav-link {
+            width: 100%;
+            padding: 5px !important; 
+        }
+    }
+    
+}

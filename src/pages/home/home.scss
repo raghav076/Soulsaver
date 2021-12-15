@@ -1,0 +1,54 @@
+.container__home {
+    height: 80vh;
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 55px;
+    padding: 5px;
+
+    .desclaimer__container {
+        width: 100%;
+        border: 1px solid black;
+        height: 40px;
+    }
+
+    .main__content__home {
+        height: 90%;
+        padding-top: 10px;
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        gap: 5%;
+        .sidebar, .ads__home {
+            height: 100%;
+        }
+        .ads__home {
+            .filters {
+                height: 50px;
+                width: 100%;
+                border: 1px solid black;
+            }
+            .donate__requests, .required__requests {
+                margin-top: 15px;
+                height: 40%;
+                width: 100%;
+                border: 1px solid black;
+            }
+        }
+    }
+    .small__sidebar {
+        grid-template-columns: 50px auto;
+        .icon__container {
+            justify-content: center;
+        }
+    }
+}
+
+@media (max-width: 1100px) {
+    .container__home {
+        width: 80%;
+    }
+}
+@media (max-width: 850px) {
+    .container__home {
+        width: 90%;
+    }
+}

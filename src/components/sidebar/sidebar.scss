@@ -1,0 +1,30 @@
+.sidebar__container {
+    max-width: 250px;
+    height: 100%;
+    border: 1px solid black;
+    padding: 5px;
+    .icon__container {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        .toggle__icon {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            right: 5px;
+            top: 5px;
+            border-radius: 50%;
+            cursor: pointer; 
+        }
+        .toggle__icon:hover {
+            background-color: rgb(238, 229, 229);
+        }
+    }
+    .sectionBreak {
+        margin: 10px 0px;
+        width: 100%;
+        border-bottom: 1px solid rgb(184, 184, 184);
+    }
+}
