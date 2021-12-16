@@ -25,6 +25,10 @@
                 height: 50px;
                 width: 100%;
                 border: 1px solid black;
+                display: flex;
+                justify-content: space-evenly;
+                align-items: center;
+                padding-top: 5px;
             }
             .donate__requests, .required__requests {
                 margin-top: 15px;

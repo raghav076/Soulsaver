@@ -3,7 +3,7 @@ import BloodtypeIcon from '@mui/icons-material/Bloodtype';
 import CloseIcon from '@mui/icons-material/Close';
 import DensityMediumIcon from '@mui/icons-material/DensityMedium';
 import { useNavigate } from 'react-router';
-import {Navbar, Nav, NavLink} from 'react-bootstrap';
+import { Navbar, Nav, NavLink } from 'react-bootstrap';
 import './header.scss';
 
 const Header = () => {
