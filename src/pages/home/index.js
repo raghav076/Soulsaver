@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Filters from '../../components/filters';
 import Header from '../../components/header';
+import ShowAds from '../../components/showAds';
 import Sidebar from '../../components/sidebar';
 import './home.scss';
 
@@ -59,8 +60,12 @@ const Home = () => {
                                 handleChange={(value) => setselectedBGP(value)} 
                             />
                         </div>
-                        <div className="donate__requests"></div>
-                        <div className="required__requests"></div>
+                        <div className="donate__requests">
+                            <ShowAds />
+                        </div>
+                        <div className="required__requests">
+                            <ShowAds />
+                        </div>
                     </div>
                 </div>
             </div>

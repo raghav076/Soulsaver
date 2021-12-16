@@ -22,17 +22,18 @@
         }
         .ads__home {
             .filters {
-                height: 50px;
+                min-height: 50px;
                 width: 100%;
                 border: 1px solid black;
                 display: flex;
                 justify-content: space-evenly;
                 align-items: center;
+                flex-wrap: wrap;
                 padding-top: 5px;
             }
             .donate__requests, .required__requests {
                 margin-top: 15px;
-                height: 40%;
+                min-height: 40%;
                 width: 100%;
                 border: 1px solid black;
             }
