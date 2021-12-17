@@ -1,14 +1,31 @@
 import React from "react";
-import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
-import "./showAds.scss";
+import { useNavigate } from "react-router";
+import propTypes from "prop-types";
 import Data from "../data";
+import "./showAds.scss";
 
-const ShowAds = () => {
+const ShowAds = ({ role }) => {
+  const navigate = useNavigate();
+  const data =
+    role === "donate"
+      ? {
+          tagLine: "Donors currently available",
+          buttonTag: "Donate Blood",
+          buttonHref: "donate"
+        }
+      : {
+          tagLine: "People requesting blood",
+          buttonTag: "Request blood",
+          buttonHref: "request"
+        };
+
+      
+      
   return (
     <div className="showAds__container">
       <div className="header__row">
-        <div className="tagLine">Help Someone by dontaing blood</div>
-        <div className="post_ad_button">Request for blood</div>
+        <div className="tagLine">{data.tagLine}</div>
+        <div className="post_ad_button" onClick={()=>navigate(data.buttonHref)}>{data.buttonTag}</div>
       </div>
       <div className="show__ads">
         {/* <ul className="ad__labels">
@@ -61,6 +78,10 @@ const ShowAds = () => {
       </div>
     </div>
   );
+};
+
+ShowAds.propTypes = {
+  role: propTypes.string.isRequired,
 };
 
 export default ShowAds;
