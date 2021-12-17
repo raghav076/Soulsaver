@@ -25,11 +25,11 @@ const Data = ({ classname, name, phone, city, bgp, updated }) => {
 };
 
 Data.propTypes = {
-  classname: PropTypes.string,
+  classname: PropTypes.string.isRequired,
   name: PropTypes.string,
-  phone: PropTypes.string,
-  city: PropTypes.string,
-  bgp: PropTypes.string,
+  phone: PropTypes.string.isRequired,
+  city: PropTypes.string.isRequired,
+  bgp: PropTypes.string.isRequired,
   updated: PropTypes.string,
 };
 
