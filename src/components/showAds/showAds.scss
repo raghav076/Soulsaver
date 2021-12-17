@@ -17,8 +17,10 @@
         background-color: #f0ad12;
     }
     .show__ads {
+        max-height: 130px;
         margin-top: 10px;
         overflow-y: scroll;
+        padding-right: 2px;
         ul {
             height: 25px;
             display: flex;
@@ -60,3 +62,24 @@
 
     }
 }
+.show__ads::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+.show__ads::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 1px grey; 
+    border-radius: 5px;
+}
+
+/* Handle */
+.show__ads::-webkit-scrollbar-thumb {
+    background: red; 
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+.show__ads::-webkit-scrollbar-thumb:hover {
+    background: rgb(212, 0, 0); 
+}
+

@@ -34,6 +34,7 @@
             .donate__requests, .required__requests {
                 margin-top: 15px;
                 min-height: 40%;
+                font-size: 14px;
                 width: 100%;
                 border: 1px solid black;
             }
@@ -47,13 +48,38 @@
     }
 }
 
-@media (max-width: 1100px) {
+@media (max-width: 1200px) {
     .container__home {
         width: 80%;
     }
 }
-@media (max-width: 850px) {
+@media (max-width: 1050px) {
     .container__home {
         width: 90%;
+    }
+}
+@media (max-width:730px) {
+    .main__content__home {
+        gap: 10px !important;
+    }
+    .ads__home {
+        .updated {
+            display: none
+        }
+    }
+}
+@media (max-width:630px) {
+    .container__home {
+        width: 100%;
+    }
+    .filter__title {
+        display: none
+    }
+}
+@media (max-width:560px) {
+    .ads__home {
+        .phone {
+            display: none;
+        }
     }
 }

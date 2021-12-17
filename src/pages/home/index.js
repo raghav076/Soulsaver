@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Filters from '../../components/filters';
 import Header from '../../components/header';
 import ShowAds from '../../components/showAds';
 import Sidebar from '../../components/sidebar';
+import stateData from '../../constants/states';
 import './home.scss';
 
 const Home = () => {
@@ -13,14 +14,19 @@ const Home = () => {
         setToggled(t);
     }
 
-    const [states, setStates] = useState([]);
+    const [states, setStates] = useState(stateData.map((s)=>s.state));
     const [district, setDistrict] = useState([]);
-    const [city, setCity] = useState([]);
+    // const [city, setCity] = useState([]);
     const [bloodGP, setBloodGP] = useState(['A +ve', 'B +ve', 'AB +ve', 'O +ve', 'A -ve', 'B -ve', 'AB -ve', 'O -ve']);
     const [selectedState, setSelectedState] = useState('');
     const [selectedDist, setSelectedDist] = useState('');
-    const [selectedCity, setSelectedCity] = useState('');
+    // const [selectedCity, setSelectedCity] = useState('');
     const [selectedBGP, setselectedBGP] = useState('');
+
+    useEffect(() => {
+        setSelectedDist('');
+        stateData.forEach((data, idx) => data.state === selectedState && setDistrict(stateData[idx].districts))
+    }, [selectedState])
 
     return (
         <>
@@ -36,22 +42,25 @@ const Home = () => {
                             <div className="filter__title">Filter Data:</div>
                             <Filters
                                 itemWidth={170}
+                                options={states}
                                 placeHolder='State'
                                 value={selectedState}
                                 handleChange={(value) => setSelectedState(value)} 
                             />
                             <Filters
                                 itemWidth={125}
+                                options={district}
                                 placeHolder='District' 
+                                inputVale={selectedDist}
                                 value={selectedDist}
                                 handleChange={(value) => setSelectedDist(value)} 
                             />
-                            <Filters
+                            {/* <Filters
                                 itemWidth={125}
                                 placeHolder='City'
                                 value={selectedCity}
                                 handleChange={(value) => setSelectedCity(value)} 
-                            />
+                            /> */}
                             <Filters
                                 itemWidth={115}
                                 placeHolder='Blood Group'
