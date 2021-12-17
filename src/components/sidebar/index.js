@@ -13,6 +13,11 @@ const Sidebar = ({ onToggle }) => {
     const [amount, setAmount] = useState('');
 
     useEffect(() => {
+        if (window.innerWidth < 900)
+            setToggled(true);
+    }, []);
+
+    useEffect(() => {
         const checkWidth = () => {
             if (window.innerWidth < 900) {
                 setToggled(true);
