@@ -4,6 +4,7 @@ import Header from "../../components/header";
 import ShowAds from "../../components/showAds";
 import Sidebar from "../../components/sidebar";
 import stateData from "../../constants/states";
+import {bloodGP} from "../../constants/bloodGroups";
 import "./home.scss";
 
 const Home = () => {
@@ -16,16 +17,7 @@ const Home = () => {
   const [states, setStates] = useState(stateData.map((s) => s.state));
   const [district, setDistrict] = useState([]);
   // const [city, setCity] = useState([]);
-  const [bloodGP, setBloodGP] = useState([
-    "A +ve",
-    "B +ve",
-    "AB +ve",
-    "O +ve",
-    "A -ve",
-    "B -ve",
-    "AB -ve",
-    "O -ve",
-  ]);
+
   const [selectedState, setSelectedState] = useState("");
   const [selectedDist, setSelectedDist] = useState("");
   // const [selectedCity, setSelectedCity] = useState('');
