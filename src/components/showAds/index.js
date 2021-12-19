@@ -5,7 +5,7 @@ import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArro
 import Data from "../data";
 import "./showAds.scss";
 
-const ShowAds = ({ role, maxHeight, liWidths }) => {
+const ShowAds = ({ role, maxHeight, liWidths , state, district, bloodG}) => {
   const navigate = useNavigate();
   const [requestData, setRequestData] = useState([]);
 
@@ -26,11 +26,19 @@ const ShowAds = ({ role, maxHeight, liWidths }) => {
     };
 
   useEffect(async () => {
-    const res = await fetch(`http://localhost:4000/${data.endPoint}`)
+    const url = `state=${state}&district=${district}&bloodG=${bloodG}`
+    const res = await fetch(
+      `http://localhost:4000/${data.endPoint}?state=` +
+        encodeURIComponent(`${state}`) +
+        "&district=" +
+        encodeURIComponent(`${district}`)+'&bloodG='+encodeURIComponent(`${bloodG}`)
+    )
       .then((t) => t.json())
       .catch((err) => err);
     setRequestData(res.data);
-  }, [role]);
+    console.log(res.data);
+  }, [role,state,district,bloodG]);
+
   
   const labelStyles = {
     name: { width: liWidths.name },
@@ -56,7 +64,7 @@ const ShowAds = ({ role, maxHeight, liWidths }) => {
           <li className="button"></li>
         </ul>
         <div className="ads" style={{ maxHeight: maxHeight }}>
-          {requestData.map((d) => (
+          {requestData&&requestData.map((d) => (
             <ul className="ad__data">
               <li className="name" style={labelStyles.name}>{d.firstName + ' ' + d.lastName}</li>
               <li className="phone" style={labelStyles.phone}>{d.phoneNumber}</li>

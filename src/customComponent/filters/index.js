@@ -4,10 +4,10 @@ import stateData from "../../constants/states";
 import { bloodGP } from "../../constants/bloodGroups";
 import './customFilters.scss';
 
-const CustomFilters = ({itemWidth}) => {
+const CustomFilters = ({itemWidth,setState, setDistrict, setBloodG}) => {
 
   const [states, setStates] = useState(stateData.map((s) => s.state));
-  const [district, setDistrict] = useState([]);
+  const [districts, setDistricts] = useState([]);
 
   const [selectedState, setSelectedState] = useState("");
   const [selectedDist, setSelectedDist] = useState("");
@@ -17,7 +17,7 @@ const CustomFilters = ({itemWidth}) => {
         setSelectedDist("");
         stateData.forEach(
             (data, idx) =>
-                data.state === selectedState && setDistrict(stateData[idx].districts)
+                data.state === selectedState && setDistricts(stateData[idx].districts)
         );
     }, [selectedState]);
 
@@ -29,22 +29,22 @@ const CustomFilters = ({itemWidth}) => {
                 options={states}
                 placeHolder="State"
                 value={selectedState}
-                handleChange={(value) => setSelectedState(value)}
+                handleChange={(value) => {setSelectedState(value); setState(value) }}
             />
             <Filters
-                itemWidth={itemWidth.district}
-                options={district}
+                itemWidth={itemWidth.districts}
+                options={districts}
                 placeHolder="District"
                 inputVale={selectedDist}
                 value={selectedDist}
-                handleChange={(value) => setSelectedDist(value)}
+                handleChange={(value) => {setSelectedDist(value); setDistrict(value)}}
             />
             <Filters
                 itemWidth={itemWidth.blood}
                 placeHolder="Blood Group"
                 options={bloodGP}
                 value={selectedBGP}
-                handleChange={(value) => setselectedBGP(value)}
+                handleChange={(value) => {setselectedBGP(value); setBloodG(value)}}
             />
         </div>
     )
