@@ -22,6 +22,7 @@
         padding-right: 2px;
         .ad__labels {
             box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+            
         }
         ul {
             display: flex;
@@ -33,15 +34,6 @@
             border-top: 1px solid black;
             padding: 1px;
 
-            .name {
-                width: 125px;
-            }
-            .phone, .city {
-                width: 100px;
-            }
-            .bgp, .updated {
-                width: 75px;
-            }
             .button {
                 width: 30px;
                 button {

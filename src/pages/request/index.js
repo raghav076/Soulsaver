@@ -25,7 +25,15 @@ const Request = () => {
         window.addEventListener('resize', checkSize)
 
         return () => window.removeEventListener('resize', checkSize);
-    }, [])
+    }, []);
+
+    const liWidths = {
+        name: '200px',
+        phone: '150px',
+        city: '150px',
+        bgp: '125px',
+        updated: '125px',
+    }
 
     return (
         <div>
@@ -35,7 +43,7 @@ const Request = () => {
             <CustomFilters itemWidth={itemWidth} />
             </div>
             <div className="ads__display">
-                <ShowAds role={type==='donor'?'request':'donor'} />
+                <ShowAds role={type==='donor'?'request':'donor'} liWidths={liWidths} />
             </div>
             <div className="section__break"></div>
             <Form type={type} />
