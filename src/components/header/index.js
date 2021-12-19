@@ -49,19 +49,19 @@ const Header = () => {
                         </NavLink>
                         <NavLink
                             className="header__links__container"
-                            onClick={() => { navigate('/request') }}
+                            onClick={() => { navigate('/request', { state: {type: 'request'} }) }}
                         >
                             Request Blood
                         </NavLink>
                         <NavLink
                             className="header__links__container"
-                            onClick={() => { navigate('/donate') }}
+                            onClick={() => { navigate('/request', { state: {type: 'donor'} }) }}
                         >
                             Donate Blood
                         </NavLink>
                         <NavLink
                             className="header__links__container"
-                            onClick={() => { navigate('/request') }}
+                            onClick={() => { navigate('/contact') }}
                         >
                             Contact Us
                         </NavLink>

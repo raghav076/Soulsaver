@@ -49,7 +49,7 @@ const Sidebar = ({ onToggle }) => {
                 </div>
             </div>
             <div className="sectionBreak"></div>
-            <div className="sidebar__item__container" onClick={() => { navigate('donate') }}>
+            {/* <div className="sidebar__item__container" onClick={() => { navigate('donate') }}>
                 <div className="sidebar__item__logo">
                     <SearchIcon />
                 </div>
@@ -64,8 +64,8 @@ const Sidebar = ({ onToggle }) => {
                 <div className={`sidebar__item__title ${toggled && 'none'}`}>
                     Requestors
                 </div>
-            </div>
-            <div className="sidebar__item__container" onClick={() => { navigate('donate') }}>
+            </div> */}
+            <div className="sidebar__item__container" onClick={() => { navigate('/request', { state: {type: 'donate'} }) }}>
                 <div className="sidebar__item__logo">
                     <i className="fas fa-hand-holding-medical"></i>
                 </div>
@@ -73,7 +73,7 @@ const Sidebar = ({ onToggle }) => {
                     Donate Blood
                 </div>
             </div>
-            <div className="sidebar__item__container" onClick={() => { navigate('request') }}>
+            <div className="sidebar__item__container" onClick={() => { navigate('/request', { state: {type: 'request'} }) }}>
                 <div className="sidebar__item__logo">
                     <i className="fas fa-heartbeat"></i>
                 </div>

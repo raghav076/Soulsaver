@@ -6,7 +6,7 @@ import stateData from "../../constants/states";
 import { bloodGP } from "../../constants/bloodGroups";
 import './form.scss';
 
-const Form = () => {
+const Form = ({type}) => {
     
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -77,42 +77,54 @@ const Form = () => {
         } else setErrDist(false);
     };
     
+    const resetForm = () => { 
+        setFirstName('');
+        setLastName('');
+        setPhone('');
+        setBloodGroup('');
+        setState('');
+        setDistrict('');
+    }
+
     const submitForm = async (e) => {
         e.preventDefault();
         validate();
-        if(!error) {
-            console.log('af')
-                const res = await fetch('http://localhost:4000/addrequest', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        firstName: firstName,
-                        lastName: lastName,
-                        phoneNumber: phone,
-                        bloodGroup: bloodGroup,
-                        state: state,
-                        district: district,
-                    })
-                }).then((t) => t.json());
-                alert(res.message);
+        const endPoint = type === 'donor' ? 'addDonor' : 'addrequest';
+        if (!error) {
+            const res = await fetch(`http://localhost:4000/${endPoint}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    firstName: firstName,
+                    lastName: lastName,
+                    phoneNumber: phone,
+                    bloodGroup: bloodGroup,
+                    state: state,
+                    district: district,
+                })
+            }).then((t) => t.json());
+            resetForm();
+            alert(res.message);
             // }
         }
     }
 
+    const tagLine = type === 'donor' ? 'Donate' : "Request";
         
     return (
         <Box
+            className='form__container'
             component="form"
             sx={{
-                p: '0 430px', m: '100px auto',
-                '& .MuiTextField-root': { m: 2, width: '25ch' },
+                '& .MuiTextField-root': { m: 2, width: '30ch' },
             }}
             noValidate
             autoComplete="off"
         >
-            <div>
+            <div className="form__label"><h3>{tagLine} Blood</h3></div>
+            <div className="form__row">
                 <TextField
                     error={errFirstName}
                     value={firstName}
@@ -134,7 +146,7 @@ const Form = () => {
                     variant="standard"
                 />
             </div>
-            <div>
+            <div className="form__row">
                 <TextField
                     error={errPhone}
                     value={phone}
@@ -143,7 +155,7 @@ const Form = () => {
                     id="standard-error-helper-text"
                     label="Phone Name"
                     defaultValue=""
-                    helperText="Incorrect entry."
+                    helperText="Enter Valid Phone Number"
                     variant="standard"
                 />
                 <TextField
@@ -163,7 +175,7 @@ const Form = () => {
                     ))}
                 </TextField>
             </div>
-            <div>
+            <div className="form__row">
                 <TextField
                     error={errState}
                     id="standard-select-currency-native"
@@ -197,7 +209,9 @@ const Form = () => {
                     ))}
                 </TextField>
             </div>
+            <div className="form__submit">
             <button onClick={(e) => submitForm(e)}>Submit</button>
+            </div>
         </Box>
     );
 }

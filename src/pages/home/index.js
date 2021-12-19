@@ -3,8 +3,7 @@ import Filters from "../../components/filters";
 import Header from "../../components/header";
 import ShowAds from "../../components/showAds";
 import Sidebar from "../../components/sidebar";
-import stateData from "../../constants/states";
-import {bloodGP} from "../../constants/bloodGroups";
+import CustomFilters from "../../customComponent/filters";
 import "./home.scss";
 
 const Home = () => {
@@ -14,22 +13,7 @@ const Home = () => {
     setToggled(t);
   };
 
-  const [states, setStates] = useState(stateData.map((s) => s.state));
-  const [district, setDistrict] = useState([]);
-  // const [city, setCity] = useState([]);
-
-  const [selectedState, setSelectedState] = useState("");
-  const [selectedDist, setSelectedDist] = useState("");
-  // const [selectedCity, setSelectedCity] = useState('');
-  const [selectedBGP, setselectedBGP] = useState("");
-
-  useEffect(() => {
-    setSelectedDist("");
-    stateData.forEach(
-      (data, idx) =>
-        data.state === selectedState && setDistrict(stateData[idx].districts)
-    );
-  }, [selectedState]);
+  const itemWidth = {state: 170, district: 125, blood: 115}
 
   return (
     <>
@@ -41,42 +25,12 @@ const Home = () => {
             <Sidebar onToggle={onToggle} />
           </div>
           <div className="ads__home">
-            <div className="filters">
-              <div className="filter__title">Filter Data:</div>
-              <Filters
-                itemWidth={170}
-                options={states}
-                placeHolder="State"
-                value={selectedState}
-                handleChange={(value) => setSelectedState(value)}
-              />
-              <Filters
-                itemWidth={125}
-                options={district}
-                placeHolder="District"
-                inputVale={selectedDist}
-                value={selectedDist}
-                handleChange={(value) => setSelectedDist(value)}
-              />
-              {/* <Filters
-                                itemWidth={125}
-                                placeHolder='City'
-                                value={selectedCity}
-                                handleChange={(value) => setSelectedCity(value)} 
-                            /> */}
-              <Filters
-                itemWidth={115}
-                placeHolder="Blood Group"
-                options={bloodGP}
-                value={selectedBGP}
-                handleChange={(value) => setselectedBGP(value)}
-              />
-            </div>
+            <CustomFilters itemWidth={itemWidth} />
             <div className="donate__requests">
-              <ShowAds role="request" />
+              <ShowAds role="request" maxHeight={130} />
             </div>
             <div className="required__requests">
-              <ShowAds role="donate" />
+              <ShowAds role="donor" maxHeight={130} />
             </div>
           </div>
         </div>

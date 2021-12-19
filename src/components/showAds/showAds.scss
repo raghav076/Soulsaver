@@ -17,15 +17,17 @@
         background-color: #f0ad12;
     }
     .show__ads {
-        max-height: 130px;
+        max-height: 220px;
         margin-top: 10px;
-        overflow-y: scroll;
         padding-right: 2px;
+        .ad__labels {
+            box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
+        }
         ul {
-            height: 25px;
             display: flex;
             padding: 0;
             justify-content: space-between;
+            align-items: center;
             list-style: none;
             margin-bottom: 1px;
             border-top: 1px solid black;
@@ -57,29 +59,30 @@
             }    
         }
         .ads {
-            border-bottom: 1px solid #000;
+            margin-top: 6px;
+            overflow-y: scroll;
         }
 
     }
 }
-.show__ads::-webkit-scrollbar {
+.ads::-webkit-scrollbar {
     width: 5px;
 }
 
 /* Track */
-.show__ads::-webkit-scrollbar-track {
+.ads::-webkit-scrollbar-track {
     box-shadow: inset 0 0 1px grey; 
     border-radius: 5px;
 }
 
 /* Handle */
-.show__ads::-webkit-scrollbar-thumb {
+.ads::-webkit-scrollbar-thumb {
     background: red; 
     border-radius: 10px;
 }
 
 /* Handle on hover */
-.show__ads::-webkit-scrollbar-thumb:hover {
+.ads::-webkit-scrollbar-thumb:hover {
     background: rgb(212, 0, 0); 
 }
 
