@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
 import stateData from "../../constants/states";
 import { bloodGP } from "../../constants/bloodGroups";
 import './form.scss';
 
 const Form = () => {
-    // first name, last name, phone number, blood group, state, district
+    
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [phone, setPhone] = useState('');
@@ -12,10 +15,19 @@ const Form = () => {
     const [state, setState] = useState('');
     const [district, setDistrict] = useState('');
 
+    
     const [states, setStates] = useState(stateData.map((s) => s.state));
     const [districts, setDistricts] = useState([]);
+    
+    //errors
+    const [errFirstName, setErrFirstName] = useState();
+    const [errLastName, setErrLastName] = useState();
+    const [errPhone, setErrPhone] = useState();
+    const [errBlood, setErrBlood] = useState();
+    const [errState, setErrState] = useState();
+    const [errDist, setErrDist] = useState();
 
-    const [errors, setErrors] = useState({});
+    let error = false;
 
     useEffect(() => {
         setDistrict("");
@@ -25,113 +37,170 @@ const Form = () => {
         );
     }, [state]);
 
-    const validateInput = () => {
-        // validate firstName
-        (firstName.length < 3 || firstName.length > 15) ? setErrors({ ...errors, firstName: true }) : setErrors({ ...errors, firstName: false });
+    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-        //validate lastName
-        lastName.length > 15 ? setErrors({ ...errors, lastName: true }) : setErrors({ ...errors, lastName: false });
-
-        //validate phone number 
-        phone.length !== 10 ? setErrors({ ...errors, phone: true }) : setErrors({ ...errors, phone: false });
-
-        //validate state
-        !state ? setErrors({ ...errors, state: true }) : setErrors({ ...errors, state: false })
+    const validate = () => {
         
-        //validate district
-        !district ? setErrors({ ...errors, district: true }) : setErrors({ ...errors, district: false });
+        if ((firstName.length < 3 || firstName.length > 15)) {
+            setErrFirstName(true);
+            error = true;
+        }
+        else setErrFirstName(false);
 
-        //validate blood group
-        !bloodGroup ? setErrors({ ...errors, bloodGroup: true }) : setErrors({ ...errors, bloodGroup: false });
+        if (lastName.length > 15) {
+            setErrLastName(true);
+            error = true;
+        } else
+            setErrLastName(false);
 
-        return false;
-    }
+        if (phone < 9999999999 && phone > 1000000000)
+            setErrPhone(false)
+        else {
+            setErrPhone(true);
+            error = true;
+        }
+        
+        if (!bloodGroup) {
+            setErrBlood(true)
+            error = true;
+        }
+        else setErrBlood(false);
 
-    useEffect(() => {
-        console.log(errors)
-    }, [errors]);
+        if (!state) {
+            setErrState(true)
+            error = true;
+        } else setErrState(false);
 
+        if (!district) {
+            setErrDist(true)
+            error = true;
+        } else setErrDist(false);
+    };
+    
     const submitForm = async (e) => {
         e.preventDefault();
-
-        if (validateInput()) {
-            const res = await fetch('http://localhost:4000/addrequest', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    firstName: firstName,
-                    lastName: lastName,
-                    phoneNumber: phone,
-                    bloodGroup: bloodGroup,
-                    state: state,
-                    district: district,
-                })
-            }).then((t) => t.json());
-            alert(res.message);
+        validate();
+        if(!error) {
+            console.log('af')
+                const res = await fetch('http://localhost:4000/addrequest', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        firstName: firstName,
+                        lastName: lastName,
+                        phoneNumber: phone,
+                        bloodGroup: bloodGroup,
+                        state: state,
+                        district: district,
+                    })
+                }).then((t) => t.json());
+                alert(res.message);
+            // }
         }
     }
 
+        
     return (
-        <form className="form__container" onSubmit={(e) => { submitForm(e) }}>
+        <Box
+            component="form"
+            sx={{
+                p: '0 430px', m: '100px auto',
+                '& .MuiTextField-root': { m: 2, width: '25ch' },
+            }}
+            noValidate
+            autoComplete="off"
+        >
             <div>
-                <label className="control-label">First Name:</label>
-                <input
-                    className="firstName input__field"
-                    type="text"
-                    placeholder="First Name"
+                <TextField
+                    error={errFirstName}
                     value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
+                    onChange={(e) => { setFirstName(e.target.value) }}
+                    id="standard-error-helper-text"
+                    label="First Name"
+                    defaultValue=""
+                    helperText="Min 3 characters"
+                    variant="standard"
                 />
-                <div className="error">{errors.firstName&&<>Invalid First Name</>}</div>
-            </div>
-            <div>
-                <label className="control-label">Last Name:</label>
-                <input
-                    className="lastName input__field"
-                    type="text"
-                    placeholder="Last Name"
+                <TextField
+                    error={errLastName}
                     value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
+                    onChange={(e) => { setLastName(e.target.value) }}
+                    id="standard-error-helper-text"
+                    label="Last Name"
+                    defaultValue=""
+                    helperText="Max 15 characters"
+                    variant="standard"
                 />
             </div>
             <div>
-                <label className="control-label">Phone Number:</label>
-                <input
-                    className="phone input__field"
-                    type="number"
-                    placeholder="Phone Number"
+                <TextField
+                    error={errPhone}
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    type="number"
+                    onChange={(e) => { setPhone(e.target.value) }}
+                    id="standard-error-helper-text"
+                    label="Phone Name"
+                    defaultValue=""
+                    helperText="Incorrect entry."
+                    variant="standard"
                 />
+                <TextField
+                    error={errBlood}
+                    id="standard-select-currency-native"
+                    select
+                    label="Select"
+                      value={bloodGroup}
+                      onChange={(e)=>setBloodGroup(e.target.value)}
+                    helperText="Please select your Blood Group"
+                    variant="standard"
+                >
+                    {bloodGP.map((option) => (
+                        <MenuItem key={option} value={option}>
+                            {option}
+                        </MenuItem>
+                    ))}
+                </TextField>
             </div>
             <div>
-                <label className="control-label">Select State:</label>
-                <select value={state} onChange={(e) => setState(e.target.value)}>
-                    <option value="" selected disabled hidden>Select State</option>
-                    {states.map((s) => <option value={s}>{s}</option>)}
-                </select>
+                <TextField
+                    error={errState}
+                    id="standard-select-currency-native"
+                    select
+                    label="Select"
+                      value={state}
+                      onChange={(e)=>setState(e.target.value)}
+                    helperText="Please select your State"
+                    variant="standard"
+                >
+                    {states.map((option) => (
+                        <MenuItem key={option} value={option}>
+                            {option}
+                        </MenuItem>
+                    ))}
+                </TextField>
+                <TextField
+                    error={errDist}
+                    id="standard-select-currency-native"
+                    select
+                    label="Select"
+                      value={district}
+                      onChange={(e)=>setDistrict(e.target.value)}
+                    helperText="Please select your District"
+                    variant="standard"
+                >
+                    {districts.map((option) => (
+                        <MenuItem key={option} value={option}>
+                            {option}
+                        </MenuItem>
+                    ))}
+                </TextField>
             </div>
-            <div>
-                <label className="control-label">Select District:</label>
-                <select value={district} onChange={(e) => setDistrict(e.target.value)}>
-                    <option value="" selected disabled hidden>Select District</option>
-                    {districts.map((s) => <option value={s}>{s}</option>)}
-                </select>
-            </div>
-            <div>
-                <label className="control-label">Select Blood Group:</label>
-                <select value={bloodGroup} onChange={(e) => setBloodGroup(e.target.value)}>
-                    <option value="" selected disabled hidden>Select Blood Group</option>
-                    {bloodGP.map((s) => <option value={s}>{s}</option>)}
-                </select>
-            </div>
-            <div>
-                <button className="submit__button" type="submit">Submit</button>
-            </div>
-        </form>
-    )
+            <button onClick={(e) => submitForm(e)}>Submit</button>
+        </Box>
+    );
 }
-
 export default Form;
+
+
