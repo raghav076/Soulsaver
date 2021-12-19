@@ -7,7 +7,10 @@ import CustomFilters from "../../customComponent/filters";
 import "./home.scss";
 
 const Home = () => {
-  const [toggled, setToggled] = useState(false);
+const [toggled, setToggled] = useState(false);
+const [state, setState] = useState('');
+const [district, setDistrict] = useState('');
+const [bloodG, setBloodG] = useState('');
 
   const onToggle = (t) => {
     setToggled(t);
@@ -25,12 +28,29 @@ const Home = () => {
             <Sidebar onToggle={onToggle} />
           </div>
           <div className="ads__home">
-            <CustomFilters itemWidth={itemWidth} />
+            <CustomFilters
+              itemWidth={itemWidth}
+              setState={(v) => setState(v)}
+              setDistrict={(v) => setDistrict(v)}
+              setBloodG={(v) => setBloodG(v)}
+            />
             <div className="donate__requests">
-              <ShowAds role="request" maxHeight={130} />
+              <ShowAds
+                role="request"
+                maxHeight={130}
+                state={state}
+                district={district}
+                bloodG={bloodG}
+              />
             </div>
             <div className="required__requests">
-              <ShowAds role="donor" maxHeight={130} />
+              <ShowAds
+                role="donor"
+                maxHeight={130}
+                state={state}
+                district={district}
+                bloodG={bloodG}
+              />
             </div>
           </div>
         </div>

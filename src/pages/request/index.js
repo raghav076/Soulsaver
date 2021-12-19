@@ -8,12 +8,15 @@ import './request.scss';
 
 const Request = () => {
     
-    const { state } = useLocation();
-    const { type } = state;
+    const  props  = useLocation();
+    const { type } = props.state;
     console.log(type);
 
     const maxItemWidth = { state: 225, district: 175, blood: 175 };
     const [itemWidth, setItemWidth] = useState(maxItemWidth);
+    const [state, setState] = useState("");
+    const [district, setDistrict] = useState("");
+    const [bloodG, setBloodG] = useState("");
 
 
     useEffect(() => {
@@ -36,19 +39,29 @@ const Request = () => {
     }
 
     return (
-        <div>
-            <Header />
-            <div className="filters__container">
-
-            <CustomFilters itemWidth={itemWidth} />
-            </div>
-            <div className="ads__display">
-                <ShowAds role={type==='donor'?'request':'donor'} liWidths={liWidths} />
-            </div>
-            <div className="section__break"></div>
-            <Form type={type} />
+      <div>
+        <Header />
+        <div className="filters__container">
+          <CustomFilters
+            itemWidth={itemWidth}
+            setState={(v) => setState(v)}
+            setDistrict={(v) => setDistrict(v)}
+            setBloodG={(v) => setBloodG(v)}
+          />
         </div>
-    )
+        <div className="ads__display">
+          <ShowAds
+            role={type === "donor" ? "request" : "donor"}
+            liWidths={liWidths}
+            state={state}
+            district={district}
+            bloodG={bloodG}
+          />
+        </div>
+        <div className="section__break"></div>
+        <Form type={type} />
+      </div>
+    );
 }
 
 export default Request;
