@@ -15,6 +15,7 @@ const CustomFilters = ({itemWidth,setState, setDistrict, setBloodG}) => {
     
     useEffect(() => {
         setSelectedDist("");
+        setDistricts([]);
         stateData.forEach(
             (data, idx) =>
                 data.state === selectedState && setDistricts(stateData[idx].districts)

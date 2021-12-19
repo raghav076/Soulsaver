@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router";
 import propTypes from "prop-types";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
-import Data from "../data";
 import "./showAds.scss";
 
 const ShowAds = ({ role, maxHeight, liWidths , state, district, bloodG}) => {
