@@ -14,13 +14,18 @@ const CustomFilters = ({itemWidth,setState, setDistrict, setBloodG}) => {
     const [selectedBGP, setselectedBGP] = useState("");
     
     useEffect(() => {
-        setSelectedDist("");
+        setSelectedDist('');
+        setDistrict('');
         setDistricts([]);
         stateData.forEach(
             (data, idx) =>
                 data.state === selectedState && setDistricts(stateData[idx].districts)
         );
     }, [selectedState]);
+
+    useEffect(() => {
+        console.log('district', selectedDist);
+    }, [selectedDist]);
 
     return (
         <div className="filters">

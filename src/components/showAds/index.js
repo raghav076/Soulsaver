@@ -3,10 +3,13 @@ import { useNavigate } from "react-router";
 import propTypes from "prop-types";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import "./showAds.scss";
+import FadeInModal from "../modal";
 
 const ShowAds = ({ role, maxHeight, liWidths , state, district, bloodG}) => {
   const navigate = useNavigate();
   const [requestData, setRequestData] = useState([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState({});
 
   const data = role === "donor"
     ? {
@@ -25,7 +28,8 @@ const ShowAds = ({ role, maxHeight, liWidths , state, district, bloodG}) => {
     };
 
   useEffect(async () => {
-    const url = `state=${state}&district=${district}&bloodG=${bloodG}`
+    // console.log('ankd')
+    // const url = `state=${state}&district=${district}&bloodG=${bloodG}`
     const res = await fetch(
       `http://localhost:4000/${data.endPoint}?state=` +
         encodeURIComponent(`${state}`) +
@@ -35,16 +39,52 @@ const ShowAds = ({ role, maxHeight, liWidths , state, district, bloodG}) => {
       .then((t) => t.json())
       .catch((err) => err);
     setRequestData(res.data);
-    console.log(res.data);
+    // console.log(res.data);
   }, [role,state,district,bloodG]);
 
+  const handleClose = () => setIsOpen(false);
   
   const labelStyles = {
     name: { width: liWidths.name },
     phone: { width: liWidths.phone },
     city: { width: liWidths.city },
     bgp: { width: liWidths.bgp },
-    updated: { width: liWidths.updated}
+    updated: { width: liWidths.updated }
+  }
+
+  let i = 0;
+
+  const FullUserDetail = () => {
+    console.log(user)
+    const { firstName, lastName, phoneNumber, state, district, bloodGroup, updated } = user;
+    return (
+      <>
+        <div className="modal__label">
+          <span>Name:</span>
+          <span>{firstName + ' ' + lastName}</span>
+        </div>
+        <div className="modal__label">
+          <span>Phone Number:</span>
+          <span>{phoneNumber}</span>
+        </div>
+        <div className="modal__label">
+          <span>Blood Group:</span>
+          <span>{bloodGroup}</span>
+        </div>
+        <div className="modal__label">
+          <span>State:</span>
+          <span>{state}</span>
+        </div>
+        <div className="modal__label">
+          <span>District:</span>
+          <span>{district}</span>
+        </div>
+        <div className="modal__label">
+          <span>Last Updated:</span>
+          <span>{updated}</span>
+        </div>
+      </>
+    );
   }
 
   return (
@@ -63,21 +103,29 @@ const ShowAds = ({ role, maxHeight, liWidths , state, district, bloodG}) => {
           <li className="button"></li>
         </ul>
         <div className="ads" style={{ maxHeight: maxHeight }}>
-          {requestData&&requestData.map((d) => (
-            <ul className="ad__data">
-              <li className="name" style={labelStyles.name}>{d.firstName + ' ' + d.lastName}</li>
-              <li className="phone" style={labelStyles.phone}>{d.phoneNumber}</li>
-              <li className="city" style={labelStyles.city}>{d.district}</li>
-              <li className="bgp" style={labelStyles.bgp}>{d.bloodGroup}</li>
-              <li className="updated" style={labelStyles.updated}>1 day ago</li>
-              <li className="button">
-                <button>
-                  <KeyboardDoubleArrowRightIcon />
-                </button>
-              </li>
-            </ul>
-          ))}
+          {
+            requestData && requestData.map((d) => {
+              i++;
+              return (
+                <>
+                <ul className="ad__data" style={{ backgroundColor: i % 2 === 0 ? '#dceaf7' : 'white' }}>
+                  <li className="name" style={labelStyles.name}>{d.firstName + ' ' + d.lastName}</li>
+                  <li className="phone" style={labelStyles.phone}>{d.phoneNumber}</li>
+                  <li className="city" style={labelStyles.city}>{d.district}</li>
+                  <li className="bgp" style={labelStyles.bgp}>{d.bloodGroup}</li>
+                  <li className="updated" style={labelStyles.updated}>1 day ago</li>
+                  <li className="button">
+                      <button onClick={() => { setIsOpen(true); setUser(d)}} >
+                      <KeyboardDoubleArrowRightIcon />
+                    </button>
+                  </li>
+                </ul>
+                  </>
+              )
+            })
+          }
         </div>
+        <FadeInModal isOpen={isOpen} handleClose={handleClose} component={<FullUserDetail />} />
       </div>
     </div>
   );
