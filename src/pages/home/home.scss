@@ -7,8 +7,13 @@
 
     .desclaimer__container {
         width: 100%;
-        border: 1px solid black;
         height: 40px;
+        display: flex;
+        align-items: center;
+        background-color: #fff3cd;
+        color: #9e6f1e;
+        border-radius: 5px;
+        padding: 0 10px;
     }
 
     .main__content__home {

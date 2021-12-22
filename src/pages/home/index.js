@@ -22,7 +22,9 @@ const [bloodG, setBloodG] = useState('');
     <>
       <Header />
       <div className="container__home">
-        <div className="desclaimer__container"></div>
+        <div className="desclaimer__container">
+          <marquee>Amet consectetur magna cillum mollit duis aliqua eu amet Lorem. In eiusmod aliquip aliquip eiusmod elit esse aliquip aute. Aute est adipisicing tempor aute proident ex consequat consectetur. Nisi eiusmod dolor laborum culpa elit minim occaecat adipisicing eu. </marquee>
+        </div>
         <div className={`main__content__home ${toggled && "small__sidebar"}`}>
           <div className="sidebar">
             <Sidebar onToggle={onToggle} />
