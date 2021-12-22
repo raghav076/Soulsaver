@@ -3,19 +3,17 @@ import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import CloseIcon from '@mui/icons-material/Close';
+import './modal.scss';
 
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: 400,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
+  borderRadius: '5px',
   boxShadow: 24,
-  p: 4,
 };
 
 export default function FadeInModal({isOpen, handleClose, component}) {
@@ -32,8 +30,9 @@ export default function FadeInModal({isOpen, handleClose, component}) {
           timeout: 500,
         }}
       >
-        <Fade in={isOpen}>
+          <Fade in={isOpen}>
           <Box sx={style}>
+            <div className="close__icon__container"><CloseIcon className="icon" onClick={handleClose} /></div>
             {component}
           </Box>
         </Fade>
