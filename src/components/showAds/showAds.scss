@@ -2,6 +2,7 @@
     padding: 5px 20px;
     width: 100%;
     .header__row {
+        font-weight: 600;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -9,20 +10,26 @@
     .post_ad_button {
         width: 30%;
         padding: 5px;
-        background-color: #ffcb52;
+        background-color: #4588c8;
+        color: #fff;
         text-align: center;
         cursor: pointer;
     }
     .post_ad_button:hover {
-        background-color: #f0ad12;
+        background-color: #256cad;
+        // // border: 2px solid #0e3050;
+        // -webkit-box-shadow:inset 2px 2px -2px #0e3050;
+        //     // -moz-box-shadow:inset 3px -3px -3px 3px #0e3050;
+        //     box-shadow:inset 2px 2px -2px #0e3050;
+        // color: #000;
     }
     .show__ads {
         max-height: 220px;
         margin-top: 10px;
         padding-right: 2px;
         .ad__labels {
-            box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px;
-            
+            font-weight: 600;
+            background-color: #dceaf7;
         }
         ul {
             display: flex;
@@ -31,8 +38,9 @@
             align-items: center;
             list-style: none;
             margin-bottom: 1px;
-            border-top: 1px solid black;
+            // border-bottom: 1px solid black;
             padding: 1px;
+            margin-right: 3px;
 
             .button {
                 width: 30px;
@@ -51,7 +59,6 @@
             }    
         }
         .ads {
-            margin-top: 6px;
             overflow-y: scroll;
         }
 
@@ -65,16 +72,17 @@
 .ads::-webkit-scrollbar-track {
     box-shadow: inset 0 0 1px grey; 
     border-radius: 5px;
+    background: #dceaf7;
 }
 
 /* Handle */
 .ads::-webkit-scrollbar-thumb {
-    background: red; 
+    background: #4588c8; 
     border-radius: 10px;
 }
 
 /* Handle on hover */
 .ads::-webkit-scrollbar-thumb:hover {
-    background: rgb(212, 0, 0); 
+    background: #256cad; 
 }
 

@@ -17,7 +17,7 @@
     }
 
     .main__content__home {
-        height: 90%;
+        height: 75vh;
         padding-top: 10px;
         display: grid;
         grid-template-columns: 1fr 3fr;
@@ -27,9 +27,10 @@
         }
         .ads__home {
             .filters {
-                min-height: 50px;
+                background-color: #fff;
+                // height: 50px;
                 width: 100%;
-                border: 1px solid black;
+                // border: 1px solid black;
                 display: flex;
                 justify-content: space-evenly;
                 align-items: center;
@@ -37,11 +38,13 @@
                 padding-top: 5px;
             }
             .donate__requests, .required__requests {
-                margin-top: 15px;
+                box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+                background-color: #fff;
+                margin-top: 5px;
                 min-height: 40%;
                 font-size: 14px;
                 width: 100%;
-                border: 1px solid black;
+                // border: 1px solid black;
             }
         }
     }
@@ -86,5 +89,8 @@
         .phone {
             display: none;
         }
+    }
+    .filters {
+        gap: 10px;
     }
 }

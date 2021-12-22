@@ -1,15 +1,17 @@
 .sidebar__container {
     max-width: 250px;
     height: 100%;
-    border: 1px solid black;
+    background-color: #fff;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border-radius: 10px;
     padding: 5px;
     .icon__container {
         width: 100%;
         display: flex;
         justify-content: flex-end;
         .toggle__icon {
-            width: 30px;
-            height: 30px;
+            width: 35px;
+            height: 35px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -19,13 +21,13 @@
             cursor: pointer; 
         }
         .toggle__icon:hover {
-            background-color: rgb(240, 240, 240);
+            background-color: #dceaf7;
         }
     }
     .sectionBreak {
         margin: 10px 0px;
         width: 100%;
-        border-bottom: 1px solid rgb(184, 184, 184);
+        border-bottom: 1px solid #dceaf7;
     }
     .donation__item__container {
         height: auto;
@@ -39,7 +41,7 @@
             width: 60%;
             min-width: 120px;
             border: none;
-            border-bottom: 2px solid black;
+            border-bottom: 2px solid #4588c8;
             padding-left: 5px;
         }
         input:focus {
@@ -76,7 +78,7 @@
         padding-top: 2px;
     }
     .sidebar__item__container:hover {
-        background-color: rgb(239, 239, 239);
+        background-color: #dceaf7;
     }
     .none {
         display: none;
