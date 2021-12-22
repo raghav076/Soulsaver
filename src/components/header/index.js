@@ -26,7 +26,7 @@ const Header = () => {
 
     return (
         <>
-            <Navbar fixed="top" collapseOnSelect expand="lg" bg="light" variant="light" onToggle={handleToggle}>
+            <Navbar fixed="top" collapseOnSelect expand="lg" variant="dark" onToggle={handleToggle}>
                 <Navbar.Brand
                     className="header__logo__container"
                     onClick={() => {
