@@ -4,6 +4,7 @@ import propTypes from "prop-types";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import "./showAds.scss";
 import FadeInModal from "../modal";
+import UserDialog from "../UserDialog";
 
 const ShowAds = ({ role, maxHeight, liWidths , state, district, bloodG}) => {
   const navigate = useNavigate();
@@ -54,39 +55,6 @@ const ShowAds = ({ role, maxHeight, liWidths , state, district, bloodG}) => {
 
   let i = 0;
 
-  const FullUserDetail = () => {
-    console.log(user)
-    const { firstName, lastName, phoneNumber, state, district, bloodGroup, updated } = user;
-    return (
-      <>
-        <div className="modal__label">
-          <span>Name:</span>
-          <span>{firstName + ' ' + lastName}</span>
-        </div>
-        <div className="modal__label">
-          <span>Phone Number:</span>
-          <span>{phoneNumber}</span>
-        </div>
-        <div className="modal__label">
-          <span>Blood Group:</span>
-          <span>{bloodGroup}</span>
-        </div>
-        <div className="modal__label">
-          <span>State:</span>
-          <span>{state}</span>
-        </div>
-        <div className="modal__label">
-          <span>District:</span>
-          <span>{district}</span>
-        </div>
-        <div className="modal__label">
-          <span>Last Updated:</span>
-          <span>{updated}</span>
-        </div>
-      </>
-    );
-  }
-
   return (
     <div className="showAds__container">
       <div className="header__row">
@@ -125,7 +93,7 @@ const ShowAds = ({ role, maxHeight, liWidths , state, district, bloodG}) => {
             })
           }
         </div>
-        <FadeInModal isOpen={isOpen} handleClose={handleClose} component={<FullUserDetail />} />
+        <FadeInModal isOpen={isOpen} handleClose={handleClose} component={<UserDialog user={user} role={role} handleClose={handleClose} />} />
       </div>
     </div>
   );

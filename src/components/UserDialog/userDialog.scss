@@ -1,0 +1,57 @@
+.user__dialog__container {
+    width: 350px;
+    padding: 20px 40px;
+    .user__dialog__label {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        grid-gap: 10px;
+        font-size: 14px;
+    }
+}
+.report__section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-top: 20px;
+    font-size: 13px;
+    color: gray;
+    button {
+        width: 60%;
+        padding: 7px;
+        border: none;
+        font-size: 16px;
+        color: #fff;
+        border-radius: 5px;
+        background-color: #f3b21c;
+    }
+    button:hover {
+        background-color: #eea702;
+    }
+    .cancel__button {
+        background-color: #fff;
+        border: 2px solid #f3b21c;
+        color: #000;
+    }
+    .cancel__button:hover {
+        background-color: #fff2d4;
+    }
+
+}
+
+.report__page__container {
+    width: 350px;
+    padding: 20px 40px;
+    .report__row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    input[type="checkbox"] {
+        height: 20px;
+        width: 20px;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+}

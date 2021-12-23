@@ -1,0 +1,14 @@
+.close__icon__container {
+    height: 40px;
+    width: 100%;
+    background-color: #4588c8;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    align-items: center;
+    .icon {
+        cursor: pointer;
+        color: #fff;
+        transform: scale(1.5);
+    }
+}
