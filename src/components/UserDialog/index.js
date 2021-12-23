@@ -49,13 +49,16 @@ const UserDialog = ({ user, role, handleClose }) => {
     const reportPage = () => {
         return (
             <div className="report__page__container">
-                <input type="checkbox" value={reportOne} onChange={(e) => setReportOne(e.target.checked)} />
-                <label>Incorrect Phone Number?</label>
-                <br />
-                <input type="checkbox" value={reportTwo} onChange={(e) => setReportTwo(e.target.checked)} />
-                {role === 'donor' ? <label>Donor already donated?</label> : <label>Requestor already got blood?</label>}
+                <div className="report__row">
+                    <input type="checkbox" value={reportOne} onChange={(e) => setReportOne(e.target.checked)} />
+                    <label>Incorrect Phone Number?</label>
+                </div>
+                <div className="report__row">
+                    <input type="checkbox" value={reportTwo} onChange={(e) => setReportTwo(e.target.checked)} />
+                    {role === 'donor' ? <label>Donor already donated?</label> : <label>Requestor already got blood?</label>}
+                </div>
                 <div className="report__section">
-                    <button className="report__button" onClick={() => { alert("Reported Successfully"); handleClose()}}>Report</button>
+                    <button className="report__button" onClick={() => { alert("Reported Successfully"); handleClose() }}>Report</button>
                     <button className="cancel__button" onClick={() => setState(1)}>Cancel</button>
                 </div>
             </div>

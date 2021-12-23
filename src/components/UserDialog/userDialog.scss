@@ -43,4 +43,15 @@
 .report__page__container {
     width: 350px;
     padding: 20px 40px;
+    .report__row {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    input[type="checkbox"] {
+        height: 20px;
+        width: 20px;
+        cursor: pointer;
+        margin-right: 10px;
+    }
 }
