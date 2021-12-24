@@ -5,12 +5,14 @@ import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArro
 import "./showAds.scss";
 import FadeInModal from "../modal";
 import UserDialog from "../UserDialog";
+import Loading from "../loading/index"
 
 const ShowAds = ({ role, maxHeight, liWidths , state, district, bloodG}) => {
   const navigate = useNavigate();
   const [requestData, setRequestData] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState({});
+  const [loading, setloading] = useState(true);
 
   const data = role === "donor"
     ? {
@@ -31,6 +33,7 @@ const ShowAds = ({ role, maxHeight, liWidths , state, district, bloodG}) => {
   useEffect(async () => {
     // console.log('ankd')
     // const url = `state=${state}&district=${district}&bloodG=${bloodG}`
+    setloading(true);
     const res = await fetch(
       `http://localhost:4000/${data.endPoint}?state=` +
         encodeURIComponent(`${state}`) +
@@ -40,6 +43,7 @@ const ShowAds = ({ role, maxHeight, liWidths , state, district, bloodG}) => {
       .then((t) => t.json())
       .catch((err) => err);
     setRequestData(res.data);
+    setloading(false);
     // console.log(res.data);
   }, [role,state,district,bloodG]);
 
@@ -59,41 +63,88 @@ const ShowAds = ({ role, maxHeight, liWidths , state, district, bloodG}) => {
     <div className="showAds__container">
       <div className="header__row">
         <div className="tagLine">{data.tagLine}</div>
-        <div className="post_ad_button" onClick={() => navigate(data.buttonHref, { state: data.state })}>{data.buttonTag}</div>
+        <div
+          className="post_ad_button"
+          onClick={() => navigate(data.buttonHref, { state: data.state })}
+        >
+          {data.buttonTag}
+        </div>
       </div>
       <div className="show__ads">
         <ul className="ad__labels">
-          <li className="name" style={labelStyles.name}>Name</li>
-          <li className="phone" style={labelStyles.phone}>Phone</li>
-          <li className="city" style={labelStyles.city}>District</li>
-          <li className="bgp" style={labelStyles.bgp}>Blood G</li>
-          <li className="updated" style={labelStyles.updated}>Updated</li>
+          <li className="name" style={labelStyles.name}>
+            Name
+          </li>
+          <li className="phone" style={labelStyles.phone}>
+            Phone
+          </li>
+          <li className="city" style={labelStyles.city}>
+            District
+          </li>
+          <li className="bgp" style={labelStyles.bgp}>
+            Blood G
+          </li>
+          <li className="updated" style={labelStyles.updated}>
+            Updated
+          </li>
           <li className="button"></li>
         </ul>
-        <div className="ads" style={{ maxHeight: maxHeight }}>
-          {
-            requestData && requestData.map((d) => {
-              i++;
-              return (
-                <>
-                <ul className="ad__data" style={{ backgroundColor: i % 2 === 0 ? '#dceaf7' : 'white' }}>
-                  <li className="name" style={labelStyles.name}>{d.firstName + ' ' + d.lastName}</li>
-                  <li className="phone" style={labelStyles.phone}>{d.phoneNumber}</li>
-                  <li className="city" style={labelStyles.city}>{d.district}</li>
-                  <li className="bgp" style={labelStyles.bgp}>{d.bloodGroup}</li>
-                  <li className="updated" style={labelStyles.updated}>1 day ago</li>
-                  <li className="button">
-                      <button onClick={() => { setIsOpen(true); setUser(d)}} >
-                      <KeyboardDoubleArrowRightIcon />
-                    </button>
-                  </li>
-                </ul>
+        {loading ? (
+          <div className="loading">
+            <Loading />{" "}
+          </div>
+        ) : (
+          <div className="ads" style={{ maxHeight: maxHeight }}>
+            {requestData &&
+              requestData.map((d) => {
+                i++;
+                return (
+                  <>
+                    <ul
+                      className="ad__data"
+                      style={{
+                        backgroundColor: i % 2 === 0 ? "#dceaf7" : "white",
+                      }}
+                    >
+                      <li className="name" style={labelStyles.name}>
+                        {d.firstName + " " + d.lastName}
+                      </li>
+                      <li className="phone" style={labelStyles.phone}>
+                        {d.phoneNumber}
+                      </li>
+                      <li className="city" style={labelStyles.city}>
+                        {d.district}
+                      </li>
+                      <li className="bgp" style={labelStyles.bgp}>
+                        {d.bloodGroup}
+                      </li>
+                      <li className="updated" style={labelStyles.updated}>
+                        1 day ago
+                      </li>
+                      <li className="button">
+                        <button
+                          onClick={() => {
+                            setIsOpen(true);
+                            setUser(d);
+                          }}
+                        >
+                          <KeyboardDoubleArrowRightIcon />
+                        </button>
+                      </li>
+                    </ul>
                   </>
-              )
-            })
+                );
+              })}
+          </div>
+        )}
+
+        <FadeInModal
+          isOpen={isOpen}
+          handleClose={handleClose}
+          component={
+            <UserDialog user={user} role={role} handleClose={handleClose} />
           }
-        </div>
-        <FadeInModal isOpen={isOpen} handleClose={handleClose} component={<UserDialog user={user} role={role} handleClose={handleClose} />} />
+        />
       </div>
     </div>
   );

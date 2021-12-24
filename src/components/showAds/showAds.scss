@@ -27,6 +27,15 @@
         max-height: 220px;
         margin-top: 10px;
         padding-right: 2px;
+        .loading{
+            // background-color:#6182a0;
+            // filter: blur(4px);
+            // height: 100px;
+            // align-items: center;
+            // text-align: center;
+            // // width: inherit;
+            
+        }
         .ad__labels {
             font-weight: 600;
             background-color: #dceaf7;
@@ -61,6 +70,7 @@
         .ads {
             overflow-y: scroll;
         }
+        
 
     }
 }
