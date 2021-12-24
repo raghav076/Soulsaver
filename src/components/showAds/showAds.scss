@@ -1,6 +1,7 @@
 .showAds__container {
     padding: 5px 20px;
     width: 100%;
+    min-height: 220px;
     .header__row {
         font-weight: 600;
         display: flex;
@@ -17,24 +18,17 @@
     }
     .post_ad_button:hover {
         background-color: #256cad;
-        // // border: 2px solid #0e3050;
-        // -webkit-box-shadow:inset 2px 2px -2px #0e3050;
-        //     // -moz-box-shadow:inset 3px -3px -3px 3px #0e3050;
-        //     box-shadow:inset 2px 2px -2px #0e3050;
-        // color: #000;
     }
     .show__ads {
         max-height: 220px;
         margin-top: 10px;
         padding-right: 2px;
+        min-height: 160px;
         .loading{
-            // background-color:#6182a0;
-            // filter: blur(4px);
-            // height: 100px;
-            // align-items: center;
-            // text-align: center;
-            // // width: inherit;
-            
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 140px;
         }
         .ad__labels {
             font-weight: 600;
@@ -47,7 +41,6 @@
             align-items: center;
             list-style: none;
             margin-bottom: 1px;
-            // border-bottom: 1px solid black;
             padding: 1px;
             margin-right: 3px;
 
