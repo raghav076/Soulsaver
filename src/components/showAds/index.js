@@ -41,6 +41,7 @@ const ShowAds = ({ role, maxHeight, liWidths , state, district, bloodG}) => {
       .then((t) => t.json())
       .catch((err) => err);
     setRequestData(res.data);
+    setloading(false);
   }, [role,state,district,bloodG]);
 
   const handleClose = () => setIsOpen(false);
