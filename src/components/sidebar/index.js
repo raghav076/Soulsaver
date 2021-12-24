@@ -87,7 +87,7 @@ const Sidebar = ({ onToggle }) => {
                 </div>
             </div>
             <div className={`donation__item__container ${toggled && 'none'}`}>
-                <input type="number" placeholder="Enter Amount" value={amount} onChange={(e) => { setAmount(e.target.value) }} />
+                <input type="number" placeholder="Enter Amount" value={amount} onChange={(e) => { e.target.value>0? setAmount(e.target.value): setAmount(0) }} />
                 <div className='sidebar__item__title'>
                     <button onClick={() => { navigate('support', { state: { amount: amount } }) }}>Donate</button>
                 </div>
