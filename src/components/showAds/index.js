@@ -2,10 +2,11 @@ import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router";
 import propTypes from "prop-types";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
-import "./showAds.scss";
 import FadeInModal from "../modal";
 import UserDialog from "../UserDialog";
 import Loading from "../loading/index"
+import { serverBaseURL } from '../../config';
+import "./showAds.scss";
 
 const ShowAds = ({ role, maxHeight, liWidths , state, district, bloodG}) => {
   const navigate = useNavigate();
@@ -33,7 +34,7 @@ const ShowAds = ({ role, maxHeight, liWidths , state, district, bloodG}) => {
   useEffect(async () => {
     setloading(true);
     const res = await fetch(
-      `http://localhost:4000/${data.endPoint}?state=` +
+      `${serverBaseURL}/${data.endPoint}?state=` +
         encodeURIComponent(`${state}`) +
         "&district=" +
         encodeURIComponent(`${district}`)+'&bloodG='+encodeURIComponent(`${bloodG}`)

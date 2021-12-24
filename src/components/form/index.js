@@ -4,6 +4,7 @@ import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import stateData from "../../constants/states";
 import { bloodGP } from "../../constants/bloodGroups";
+import { serverBaseURL } from '../../config';
 import './form.scss';
 
 const Form = ({type}) => {
@@ -91,7 +92,7 @@ const Form = ({type}) => {
         validate();
         const endPoint = type === 'donor' ? 'addDonor' : 'addrequest';
         if (!error) {
-            const res = await fetch(`http://localhost:4000/${endPoint}`, {
+            const res = await fetch(`${serverBaseURL}/${endPoint}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
