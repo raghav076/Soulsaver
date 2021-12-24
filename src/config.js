@@ -1,1 +1,1 @@
-export const serverBaseURL = 'http://savelifeindia.herokuapp.com';
+export const serverBaseURL = 'https://savelifeindia.herokuapp.com';
