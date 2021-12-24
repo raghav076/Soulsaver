@@ -31,8 +31,6 @@ const ShowAds = ({ role, maxHeight, liWidths , state, district, bloodG}) => {
     };
 
   useEffect(async () => {
-    // console.log('ankd')
-    // const url = `state=${state}&district=${district}&bloodG=${bloodG}`
     setloading(true);
     const res = await fetch(
       `http://localhost:4000/${data.endPoint}?state=` +
@@ -43,8 +41,6 @@ const ShowAds = ({ role, maxHeight, liWidths , state, district, bloodG}) => {
       .then((t) => t.json())
       .catch((err) => err);
     setRequestData(res.data);
-    setloading(false);
-    // console.log(res.data);
   }, [role,state,district,bloodG]);
 
   const handleClose = () => setIsOpen(false);
