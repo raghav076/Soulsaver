@@ -9,14 +9,14 @@ import './request.scss';
 const Request = () => {
     
     const  props  = useLocation();
-    const { type } = props.state;
+    let type = (props&&props.state)?props.state.type:'request';
+    // type = type || 'request';
 
     const maxItemWidth = { state: 225, district: 175, blood: 175 };
     const [itemWidth, setItemWidth] = useState(maxItemWidth);
     const [state, setState] = useState("");
     const [district, setDistrict] = useState("");
     const [bloodG, setBloodG] = useState("");
-
 
     useEffect(() => {
         const checkSize = () => {

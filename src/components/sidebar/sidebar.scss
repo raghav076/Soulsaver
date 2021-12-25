@@ -74,8 +74,9 @@
     .sidebar__item__logo {
         width: 30px;
         height: 30px;
-        text-align: right;
-        padding-top: 2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .sidebar__item__container:hover {
         background-color: #dceaf7;

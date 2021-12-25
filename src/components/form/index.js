@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
+import Loading from '../loading';
 import stateData from "../../constants/states";
 import { bloodGP } from "../../constants/bloodGroups";
 import { serverBaseURL } from '../../config';
@@ -27,6 +28,7 @@ const Form = ({type}) => {
     const [errBlood, setErrBlood] = useState();
     const [errState, setErrState] = useState();
     const [errDist, setErrDist] = useState();
+    const [submitting, setSubmitting] = useState(false);
 
     let error = false;
 
@@ -92,6 +94,7 @@ const Form = ({type}) => {
         validate();
         const endPoint = type === 'donor' ? 'addDonor' : 'addrequest';
         if (!error) {
+            setSubmitting(true);
             const res = await fetch(`${serverBaseURL}/${endPoint}`, {
                 method: 'POST',
                 headers: {
@@ -107,8 +110,8 @@ const Form = ({type}) => {
                 })
             }).then((t) => t.json());
             resetForm();
+            setSubmitting(false);
             alert(res.message);
-            // }
         }
     }
 
@@ -211,7 +214,7 @@ const Form = ({type}) => {
                 </TextField>
             </div>
             <div className="form__submit">
-            <button onClick={(e) => submitForm(e)}>Submit</button>
+                {!submitting ? <button onClick={(e) => submitForm(e)}>Submit</button>:<Loading />}
             </div>
         </Box>
     );

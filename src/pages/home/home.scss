@@ -85,9 +85,23 @@
     }
 }
 @media (max-width:560px) {
+    .sidebar {
+        .sidebar__container {
+            width: 40px !important;
+        }
+    }
+    .small__sidebar {
+        grid-template-columns: 40px auto !important;
+    }
     .ads__home {
+        .showAds__container {
+            padding: 10px 5px;
+        }
         .phone {
             display: none;
+        }
+        .name {
+            width: 100px !important;
         }
     }
     .filters {

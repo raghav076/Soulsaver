@@ -58,10 +58,13 @@
         padding: 5px;
         .showAds__container {
             padding: 10px 0px;
-                overflow-y: scroll;
+            overflow-y: scroll;
+            ul {
+                gap: 5px;    
+            }
         }
-        .name {
-            width: 85px;
+        .phone {
+            display: none;
         }
     }
     .filters__container {
