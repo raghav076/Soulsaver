@@ -17,7 +17,9 @@ const Sidebar = React.memo(({ onToggle }) => {
         const checkWidth = () => {
             if (window.innerWidth < 900) {
                 console.log('closing from line 19')
-                !inputRef.activeElement&&setToggled(true);
+                console.log(inputRef.activeElement);
+                if (!inputRef.activeElement)
+                    setToggled(true);
             } else setToggled(false);
         }
         window.addEventListener('resize', checkWidth);
