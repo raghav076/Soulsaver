@@ -11,14 +11,14 @@ const Sidebar = React.memo(({ onToggle }) => {
     const [toggled, setToggled] = useState(false);
     const [amount, setAmount] = useState('');
 
-    const inputRef = useRef(null);
+    const inputRef = useRef();
 
     useEffect(() => {
         const checkWidth = () => {
             if (window.innerWidth < 900) {
                 console.log('closing from line 19')
-                console.log(inputRef.activeElement);
-                if (!inputRef.activeElement)
+                console.log(document.activeElement);
+                if (inputRef.current!==document.activeElement)
                     setToggled(true);
             } else setToggled(false);
         }
