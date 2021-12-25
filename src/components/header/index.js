@@ -34,7 +34,7 @@ const Header = () => {
                     }}
                 >
                     <BloodtypeIcon className="header__logo" />
-                    <div className="header__logo___text">FRIEND<span className="red">FOR</span>LIFE</div>
+                    <div className="header__logo___text">SOUL<span className="red">SAVER</span></div>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav">
                     {renderMenu()}
@@ -67,7 +67,7 @@ const Header = () => {
                         </NavLink>
                         <NavLink
                             className="header__links__container"
-                            onClick={() => { navigate('/donate') }}
+                            onClick={() => { navigate('/support') }}
                         >
                             Support Us
                         </NavLink>
