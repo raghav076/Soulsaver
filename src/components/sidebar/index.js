@@ -1,30 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
-import SearchIcon from '@mui/icons-material/Search';
 import './sidebar.scss';
 
-const Sidebar = ({ onToggle }) => {
+const Sidebar = React.memo(({ onToggle }) => {
 
     const navigate = useNavigate();
 
     const [toggled, setToggled] = useState(false);
     const [amount, setAmount] = useState('');
 
-    useEffect(() => {
-        if (window.innerWidth < 900)
-            setToggled(true);
-    }, []);
+    const inputRef = useRef(null);
 
     useEffect(() => {
         const checkWidth = () => {
             if (window.innerWidth < 900) {
-                setToggled(true);
+                !inputRef.actieElement&&setToggled(true);
             } else setToggled(false);
         }
         window.addEventListener('resize', checkWidth);
-
+        checkWidth();
         return () => {
             window.removeEventListener('resize', checkWidth);
         }
@@ -65,7 +61,7 @@ const Sidebar = ({ onToggle }) => {
                     Requestors
                 </div>
             </div> */}
-            <div className="sidebar__item__container" onClick={() => { navigate('/request', { state: {type: 'donate'} }) }}>
+            <div className="sidebar__item__container" onClick={() => { navigate('/request', { state: { type: 'donate' } }) }}>
                 <div className="sidebar__item__logo">
                     <i className="fas fa-hand-holding-medical"></i>
                 </div>
@@ -73,7 +69,7 @@ const Sidebar = ({ onToggle }) => {
                     Donate Blood
                 </div>
             </div>
-            <div className="sidebar__item__container" onClick={() => { navigate('/request', { state: {type: 'request'} }) }}>
+            <div className="sidebar__item__container" onClick={() => { navigate('/request', { state: { type: 'request' } }) }}>
                 <div className="sidebar__item__logo">
                     <i className="fas fa-heartbeat"></i>
                 </div>
@@ -87,13 +83,13 @@ const Sidebar = ({ onToggle }) => {
                 </div>
             </div>
             <div className={`donation__item__container ${toggled && 'none'}`}>
-                <input type="number" placeholder="Enter Amount" value={amount} onChange={(e) => { e.target.value>0? setAmount(e.target.value): setAmount(0) }} />
+                <input ref={inputRef} type="number" placeholder="Enter Amount" value={amount} onChange={(e) => { e.target.value > 0 ? setAmount(e.target.value) : setAmount(0) }} />
                 <div className='sidebar__item__title'>
                     <button onClick={() => { navigate('support', { state: { amount: amount } }) }}>Donate</button>
                 </div>
             </div>
         </div>
     )
-}
+});
 
 export default Sidebar;

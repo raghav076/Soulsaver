@@ -94,10 +94,10 @@ const ShowAds = ({ role, maxHeight, liWidths , state, district, bloodG}) => {
         ) : (
           <div className="ads" style={{ maxHeight: maxHeight }}>
             {requestData &&
-              requestData.map((d) => {
+              requestData.map((d, idx) => {
                 i++;
                 return (
-                  <>
+                  <div key={idx}>
                     <ul
                       className="ad__data"
                       style={{
@@ -130,7 +130,7 @@ const ShowAds = ({ role, maxHeight, liWidths , state, district, bloodG}) => {
                         </button>
                       </li>
                     </ul>
-                  </>
+                  </div>
                 );
               })}
           </div>
