@@ -16,7 +16,7 @@ const Sidebar = React.memo(({ onToggle }) => {
     useEffect(() => {
         const checkWidth = () => {
             if (window.innerWidth < 900) {
-                !inputRef.actieElement&&setToggled(true);
+                !inputRef.activeElement&&setToggled(true);
             } else setToggled(false);
         }
         window.addEventListener('resize', checkWidth);
