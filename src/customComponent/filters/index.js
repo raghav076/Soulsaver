@@ -23,10 +23,6 @@ const CustomFilters = ({itemWidth,setState, setDistrict, setBloodG}) => {
         );
     }, [selectedState]);
 
-    useEffect(() => {
-        console.log('district', selectedDist);
-    }, [selectedDist]);
-
     return (
         <div className="filters">
             <div className="filter__title">Filter Data:</div>

@@ -10,7 +10,6 @@ const Request = () => {
     
     const  props  = useLocation();
     const { type } = props.state;
-    console.log(type);
 
     const maxItemWidth = { state: 225, district: 175, blood: 175 };
     const [itemWidth, setItemWidth] = useState(maxItemWidth);

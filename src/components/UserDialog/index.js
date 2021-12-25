@@ -42,10 +42,6 @@ const UserDialog = ({ user, role, handleClose }) => {
         )
     }
     
-    useEffect(() => {
-        console.log(state);
-    }, [state]);
-    
     const reportPage = () => {
         return (
             <div className="report__page__container">
