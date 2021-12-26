@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined';
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
 import './sidebar.scss';
 
 const Sidebar = React.memo(({ onToggle }) => {
@@ -64,7 +65,7 @@ const Sidebar = React.memo(({ onToggle }) => {
             </div> */}
             <div className="sidebar__item__container" onClick={() => { navigate('/request', { state: { type: 'donate' } }) }}>
                 <div className="sidebar__item__logo">
-                    <i className="fas fa-hand-holding-medical"></i>
+                    <VolunteerActivismIcon />
                 </div>
                 <div className={`sidebar__item__title ${toggled && 'none'}`}>
                     Donate Blood
@@ -80,13 +81,13 @@ const Sidebar = React.memo(({ onToggle }) => {
             </div>
             <div className={`sidebar__item__container ${!toggled && 'none'}`}>
                 <div className="sidebar__item__logo">
-
+                    <i class="fas fa-donate"></i>
                 </div>
             </div>
             <div className={`donation__item__container ${toggled && 'none'}`}>
                 <input ref={inputRef} type="number" placeholder="Enter Amount" value={amount} onChange={(e) => { e.target.value > 0 ? setAmount(e.target.value) : setAmount(0) }} />
                 <div className='sidebar__item__title'>
-                    <button onClick={() => { navigate('support', { state: { amount: amount } }) }}>Donate</button>
+                    <button onClick={() => { navigate('support', { state: { amount: amount } }) }}>Donate Us</button>
                 </div>
             </div>
         </div>
