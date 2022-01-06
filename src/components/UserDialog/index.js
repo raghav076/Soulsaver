@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import moment from "moment";
 import './userDialog.scss';
 
 const UserDialog = ({ user, role, handleClose }) => {
@@ -7,7 +8,7 @@ const UserDialog = ({ user, role, handleClose }) => {
     const [reportTwo, setReportTwo] = useState(false);
 
     const userDetails = (user) => {
-        const { firstName, lastName, phoneNumber, state, district, bloodGroup, updated } = user;
+        const { firstName, lastName, phoneNumber, state, district, bloodGroup, updatedAt } = user;
         return (
             <div className="user__dialog__container">
                 <div className="user__dialog__label">
@@ -32,7 +33,7 @@ const UserDialog = ({ user, role, handleClose }) => {
                 </div>
                 <div className="user__dialog__label">
                     <span>Last Updated:</span>
-                    <span>{updated || '1 day'}</span>
+                    <span>{ moment(updatedAt).fromNow() || '1 day'}</span>
                 </div>
                 <div className="report__section">
                     <span>Found Incorrect Details?</span>
