@@ -79,7 +79,7 @@ const Sidebar = React.memo(({ onToggle }) => {
                     Request Blood
                 </div>
             </div>
-            <div className={`sidebar__item__container ${!toggled && 'none'}`}>
+            {/* <div className={`sidebar__item__container ${!toggled && 'none'}`}>
                 <div className="sidebar__item__logo">
                     <i class="fas fa-donate"></i>
                 </div>
@@ -89,7 +89,7 @@ const Sidebar = React.memo(({ onToggle }) => {
                 <div className='sidebar__item__title'>
                     <button onClick={() => { navigate('support', { state: { amount: amount } }) }}>Donate Us</button>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 });

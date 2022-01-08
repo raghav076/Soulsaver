@@ -59,7 +59,7 @@ const Header = () => {
                         >
                             Donate Blood
                         </NavLink>
-                        <NavLink
+                        {/* <NavLink
                             className="header__links__container"
                             onClick={() => { navigate('/contact') }}
                         >
@@ -70,7 +70,7 @@ const Header = () => {
                             onClick={() => { navigate('/support') }}
                         >
                             Support Us
-                        </NavLink>
+                        </NavLink> */}
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
