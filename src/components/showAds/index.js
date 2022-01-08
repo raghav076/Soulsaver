@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router";
 import propTypes from "prop-types";
+import moment from 'moment'
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import FadeInModal from "../modal";
 import UserDialog from "../UserDialog";
@@ -117,7 +118,7 @@ const ShowAds = ({ role, maxHeight, liWidths , state, district, bloodG}) => {
                         {d.bloodGroup}
                       </li>
                       <li className="updated" style={labelStyles.updated}>
-                        1 day ago
+                        {moment(d.updatedAt).fromNow()}
                       </li>
                       <li className="button">
                         <button
